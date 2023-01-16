@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class ConversioneCelsiusFahrenheitFahrenheitCelsius {
+    public static void main(String[] args) {
+        Scanner inser = new Scanner(System.in);
+        System.out.println("Digitare C (in maiuscolo o in minuscolo) se la temperatura è in Celsius e\n" +
+                "la si vuole convertire in Fahrenheit; digitare F (in maiuscolo o in minuscolo) se la temperatura\n" +
+                "è in Fahrenheit e la si vuole convertire in Celsius");
+        String mis = inser.nextLine();
+        System.out.println("Inserire la temperatura");
+        double temp = inser.nextDouble();
+        double convTemp = 0;
+        switch(mis){
+            case("C"):
+                convTemp = 9 * temp / 5 + 32;
+                System.out.printf("la temperatura in Fahrenheit è %.2f °F\n", convTemp);
+                break;
+            case("c"):
+                convTemp = 9 * temp / 5 + 32;
+                System.out.printf("la temperatura in Fahrenheit è %.2f °F\n", convTemp);
+                break;
+            case ("F"):
+                convTemp = (5 * temp - 32) / 9;
+                System.out.printf("la temperatura in Celsius è %.2f °C\n", convTemp);
+                break;
+            case ("f"):
+                convTemp = (5 * temp - 32) / 9;
+                System.out.printf("la temperatura in Celsius è %.2f °C\n", convTemp);
+                break;
+            default:
+                System.out.println("Il carattere inserito non è corretto");
+        }
+    }
+}
