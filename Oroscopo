@@ -1,0 +1,194 @@
+import java.util.Scanner;
+public class Oroscopo {
+    public static void main(String[] args) {
+        Scanner inser = new Scanner (System.in);
+        System.out.println("Inserire il mese di nascita");
+        byte mese = inser.nextByte();
+        System.out.println("Adesso inserire il giorno di nascita");
+        byte giorno = inser.nextByte();
+        String segno = "Null";
+        switch (mese) {
+            case(1):
+                if(giorno > 0 && giorno <= 20){
+                    segno = "Capricorno";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 20 && giorno <= 31){
+                        segno = "Acquario";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+                break;
+            case(2):
+                if(giorno > 0 && giorno <= 19){
+                    segno = "Acquario";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 19 && giorno <= 29){
+                        segno = "Pesci";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+                break;
+            case(3):
+                if(giorno > 0 && giorno <= 20){
+                    segno = "Pesci";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 20 && giorno <= 31){
+                        segno = "Ariete";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+                break;
+            case(4):
+                if(giorno > 0 && giorno <= 20){
+                    segno = "Ariete";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 20 && giorno <= 30){
+                        segno = "Toro";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+                break;
+            case(5):
+                if(giorno > 0 && giorno <= 20){
+                    segno = "Toro";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 20 && giorno <= 31){
+                        segno = "Gemelli";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+                break;
+            case(6):
+                if(giorno > 0 && giorno <= 21){
+                    segno = "Gemelli";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 21 && giorno <= 30){
+                        segno = "Cancro";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla i dati inseriti");
+                    }
+                }
+            case(7):
+                if(giorno > 0 && giorno <= 22){
+                    segno = "Cancro";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 22 && giorno <= 31){
+                        segno = "Leone";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            case(8):
+                if(giorno > 0 && giorno <= 23){
+                    segno = "Leone";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 23 && giorno <= 31){
+                        segno = "Vergine";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            case(9):
+                if(giorno > 0 && giorno <= 22){
+                    segno = "Vergine";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 22 && giorno <= 30){
+                        segno = "Bilancia";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            case(10):
+                if(giorno > 0 && giorno <= 22){
+                    segno = "Bilancia";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 22 && giorno <= 31){
+                        segno = "Scorpione";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            case(11):
+                if(giorno > 0 && giorno <= 22){
+                    segno = "Scorpione";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 22 && giorno <= 30){
+                        segno = "Sagittario";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            case(12):
+                if(giorno > 0 && giorno <= 21){
+                    segno = "Sagittario";
+                    System.out.println("Il tuo segno zodiacale è " + segno);
+                }
+                else{
+                    if(giorno > 21 && giorno <= 31){
+                        segno = "Capricorno";
+                        System.out.println("Il tuo segno zodiacale è " + segno);
+                    }
+                    else{
+                        System.out.println("Errore: controlla il giorno inserito");
+                    }
+                }
+                break;
+            default:
+                System.out.println("Errore: controlla il mese inserito");
+        }
+    }
+}
