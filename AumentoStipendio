@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class AumentoStipendio {
+    public static void main(String[] args) {
+        Scanner inser = new Scanner(System.in);
+        System.out.println("Inserire lo stipendio dell'impiegato");
+        double stipendio = inser.nextDouble();
+        System.out.println("Valutare la performance: 1 = eccellente, 2 = buona, 3 = scarsa");
+        byte valut = inser.nextByte();
+        if(stipendio < 0){
+            System.out.println("Il valore di stipendio inserito non è valido");
+        }else{
+            if(valut == 1){
+                stipendio *= 1.06;
+                System.out.printf("Lo stipendio aggiornato è di %.2f\n", stipendio);
+            }else{
+                if(valut == 2){
+                    stipendio *= 1.04;
+                    System.out.printf("Lo stipendio aggiornato è di %.2f\n", stipendio);
+                }else{
+                    if(valut == 3){
+                        stipendio *= 1.015;
+                        System.out.printf("Lo stipendio aggiornato è di %.2f\n", stipendio);
+                    }else{
+                        System.out.println("Il valore di performance inserito non è valido");
+                    }
+                }
+            }
+        }
+
+    }
+}
