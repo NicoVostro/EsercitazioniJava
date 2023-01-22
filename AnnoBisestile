@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class AnnoBisestile {
+    public static void main(String[] args) {
+        Scanner ins = new Scanner(System.in);
+        System.out.println("Inserire l'anno da esaminare.");
+        int anno = ins.nextInt();
+        if(anno % 400 != 0){
+            if(anno % 100 != 0 && (anno % 4 ==0)){
+                System.out.println("L'anno è bisestile.");
+            }else{
+                System.out.println("L'anno NON è bisestile.");
+            }
+        }else{
+            System.out.println("L'anno è bisestile.");
+        }
+    }
+}
