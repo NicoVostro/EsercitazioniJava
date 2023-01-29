@@ -1,0 +1,141 @@
+import java.util.Scanner;
+public class Main {public static void main(String[] args) {
+   UtilitàStringhe UtStr = new UtilitàStringhe();
+   UtStr.Menu();
+   }
+}
+/*-------------------------------------------------------------------------*/
+import java.util.Scanner;
+public class UtilitàStringhe {
+    Scanner scan = new Scanner(System.in);
+
+    public void Menu() {
+        do {
+            System.out.println("\nScegliere l'operazione da svolgere su una stringa. Digitare:\n");
+            System.out.println("1 - per contare le cifre e sommarle;\n2  - per stampare i caratteri compresi;");
+            System.out.println("3  - per visualizzare il carattere centrale;\n4  - per sostituire un carattere;");
+            System.out.println("5  - per spostare gli zeri a destra in una vettore di interi;\nE  - per uscire dal programma");
+            String sceltaImp = scan.nextLine();
+            char scelta = sceltaImp.charAt(0);
+            switch (scelta) {
+                case('1'):
+                    cifreStringa();
+                    break;
+                case('2'):
+                    stampaCompresi();
+                    break;
+                case('3'):
+                    carCentrale();
+                    break;
+                case('4'):
+                    sostCar();
+                    break;
+                case('5'):
+                    spostaZeri();
+                    break;
+                case('E'):
+                    System.out.println("Chiusura programma...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Scelta non valida.");
+                    break;
+            }
+        }while(true);
+    }
+
+    public void cifreStringa() {
+        System.out.println("\nDigitare una stringa:");
+        String str = scan.nextLine();
+        String[] vettoreStr = str.split("");
+        int conta = 0;
+        int somma = 0;
+        for(int i=0; i<vettoreStr.length; i++){
+            if(Character.isDigit(str.charAt(i))){
+                int cifra = Integer.parseInt(vettoreStr[i]);
+                conta++;
+                somma = somma + cifra;
+            }
+        }
+        System.out.println("Le cifre presenti nella stringa digitata sono in tutto " + conta + ".");
+        System.out.println("La loro somma ha risultato " + somma + ".");
+    }
+
+    public void stampaCompresi(){
+        System.out.println("\nDigitare una stringa:");
+        String str = scan.nextLine();
+        System.out.println("Inserire il carattere d'inizio della stampa");
+        String impIn = scan.nextLine();
+        char in = impIn.charAt(0);
+        System.out.println("Inserire il carattere di fine della stampa");
+        String impFin = scan.nextLine();
+        char fin = impFin.charAt(0);
+        if(str.contains(impIn) && str.contains(impFin)) {
+            System.out.println("La parola compresa tra i caratteri è: ");
+            for(int i=0; i<str.length(); i++){
+                if(str.charAt(i) == in){
+                    System.out.print(str.charAt(i));
+                    for(int j=i+1; j<str.length(); j++){
+                        if(str.charAt(j) != fin){
+                            System.out.print(str.charAt(j));
+                        }else{
+                            System.out.print(str.charAt(j));
+                            break;
+                        }
+                    }
+                }
+            }
+        }else{
+            System.out.println("I caratteri inseriti non sono validi");
+        }
+    }
+
+    public void carCentrale(){
+        System.out.println("\nDigitare una stringa:");
+        String str = scan.nextLine();
+        if(str.length() % 2 == 0){
+            char med1 = str.charAt((str.length()/2) - 1);
+            char med2 = str.charAt(str.length()/2);
+            System.out.println("I caratteri centrali sono " + med1 + " e " + med2 + ".");
+        }else {
+            char med = str.charAt(str.length() / 2);
+            System.out.println("Il carattere centrale è " + med + ".");
+        }
+    }
+
+    public void sostCar(){
+        System.out.println("\nDigitare una stringa:");
+        String str = scan.nextLine();
+        System.out.println("Digitare il carattere da sostituire:");
+        String chImput = scan.nextLine();
+        char ch = chImput.charAt(0);
+        System.out.println("Digitare il carattere da inserire al posto del sostituito:");
+        String sostImput = scan.nextLine();
+        char sost = sostImput.charAt(0);
+        String lavorata = str.replace(ch, sost);
+        System.out.println("La frase con caratteri sostituiti è:\n" + lavorata + ".");
+    }
+
+    public void spostaZeri(){
+        System.out.println("\nDigitare una stringa di numeri interi, intervallati da uno spazio:");
+        String str = scan.nextLine();
+        String [] interi = str.split(" ");
+        String zero = "0";
+        int k = 0;
+        for(int i=0; i<(interi.length - k); i++){
+            if(interi[i].equals(zero)){
+                String temp = interi[(interi.length - 1 - k)];
+                interi[interi.length - 1 - k] = interi[i];
+                interi[i] = temp;
+                k++;
+                if(interi[i].equals(zero)){
+                    i=0;
+                }
+            }
+        }
+        System.out.println("Vettore Modificato: ");
+        for (int i=0; i< interi.length; i++){
+            System.out.print(interi[i] + " ");
+        }
+    }
+}
