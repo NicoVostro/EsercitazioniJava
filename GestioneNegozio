@@ -1,0 +1,116 @@
+import java.time.LocalDateTime;
+public class Negozio {
+    private LocalDateTime dataOperazione;
+    private String prodotto;
+    private float prezzo;
+
+    public Negozio(String prodotto, float prezzo) {
+        this.dataOperazione = dataOperazione.now();
+        this.prodotto = prodotto;
+        this.prezzo = prezzo;
+    }
+    public LocalDateTime getDataOperazione() {
+        return dataOperazione;
+    }
+    public String getProdotto() {
+        return prodotto;
+    }
+    public float getPrezzo() {
+        return prezzo;
+    }
+    @Override
+    public String toString() {
+        return "Data " + getDataOperazione() + ".\nProdotto " + getProdotto() + ".\n Prezzo " + getPrezzo() + ".\n";
+    }
+}
+/*--------------------------------------------------------------------------------------------------------*/
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+import java.time.LocalDateTime;
+public class DatiAcquisti {
+    Scanner scan = new Scanner(System.in);
+    private int contatore = 0;
+    Negozio[] vendite = null;
+    UtilitàPrPr Ut = new UtilitàPrPr();
+    public DatiAcquisti() {
+        vendite = new Negozio[10];
+    }
+    public void registraVendite(){
+        String prodotto = Ut.imputProd();
+        float prezzo = Ut.imputPrez();
+        vendite[contatore] = new Negozio(prodotto, prezzo);
+        contatore++;
+    }
+    public void report() {
+
+        for(int i=0; i<vendite.length; i++) {
+            if(vendite[i] != null) {
+                DateTimeFormatter formatta = DateTimeFormatter.ofPattern("'Data' EEEE dd MMMM yyyy 'Ora' hh:mm a");
+                String data = vendite[i].getDataOperazione().format(formatta);
+                String prodotto = vendite[i].getProdotto();
+                float prezzo = vendite[i].getPrezzo();
+                System.out.println("Data operazione: " + data + ".\nArticolo: " + prodotto + ".\nPrezzo: " + prezzo + " euro.");
+            }
+        }
+    }
+    public void stampaIncassi(){
+        float totale = 0.0f;
+        for(int i=0; i< vendite.length; i++){
+            if(vendite[i] != null){
+                totale += vendite[i].getPrezzo();
+            }
+        }
+        System.out.println("L'incasso totale è di " + totale + " euro.");
+    }
+    public void Menu() {
+        System.out.println("----GESTIONE ACQUISTI----");
+        boolean flag = true;
+        int cont = 0;
+        do{
+            System.out.println("Scegliere l'operazione:\n1 - Registra vendite.\n2 - Stampa incassi.\n3 - Report Completo.");
+            System.out.println("9 - Esci dal programma.");
+            int scelta = scan.nextInt();
+            switch(scelta){
+                case(1):
+                    registraVendite();
+                    cont++;
+                    break;
+                case(2):
+                    stampaIncassi();
+                    break;
+                case(3):
+                    report();
+                    break;
+                case(9):
+                    flag = false;
+                    System.out.println("Chiusura programma...");
+                    break;
+                default:
+                    System.out.println("Scelta non valida.");
+                    break;
+            }
+        }while(flag && cont<=10);
+    }
+}
+/*------------------------------------------------------------------------------------------*/
+import java.util.Scanner;
+public class UtilitàPrPr {
+    Scanner scan = new Scanner(System.in);
+    public String imputProd (){
+        System.out.println("Inserisci il prodotto da acquistare.");
+        String prodotto = scan.next();
+        return prodotto;
+    }
+    public float imputPrez(){
+        System.out.println("Inserisci il prezzo del prodotto.");
+        float prezzo = scan.nextFloat();
+        return prezzo;
+    }
+}
+/*--------------------------------------------------------------------------------------------------*/
+public class Main {
+   public static void main(String[] args) {
+      DatiAcquisti DA = new DatiAcquisti();
+      DA.Menu();
+   }
+}
