@@ -1,0 +1,120 @@
+/*-----------------------------------------*/
+public class Main {
+    public static void main(String[] args) {
+        Parcheggio parcheggio = new Parcheggio();
+        parcheggio.Menu();
+    }
+}
+/*----------------------------------------*/
+public class Auto {
+    private String targa;
+    private String modello;
+
+    public Auto(String targa, String modello) {
+        this.targa = targa;
+        this.modello = modello;
+    }
+
+    public void setTarga(String targa) {
+        this.targa = targa;
+    }
+    public void setModello(String modello) {
+        this.modello = modello;
+    }
+    public String getTarga() {
+        return targa;
+    }
+    public String getModello() {
+        return modello;
+    }
+}
+/*-------------------------------------------*/
+import java.util.Scanner;
+public class Parcheggio {
+    Scanner scan = new Scanner(System.in);
+    private Auto[] veicoli;
+    public Parcheggio(){
+        veicoli = new Auto[30];
+    }
+    int disponibili = 30;
+    public void Menu(){
+        do{
+            System.out.println("\n-*-*-MENU-*-*-\nScegliere l'operazione digitando:");
+            System.out.println("1 - per inserire una nuova auto;\n2 - per selezionare l'uscita di un'auto;");
+            System.out.println("3 - per visualizzare le auto in parcheggio;\nE - per uscire dal programma.");
+            String impScelta = scan.nextLine();
+            char scelta = impScelta.charAt(0);
+            switch(scelta){
+                case('1'):
+                    System.out.println("Inserire targa:");
+                    String trg = scan.nextLine();
+                    System.out.println("Inserire modello:");
+                    String mdl = scan.nextLine();
+                    try{
+                        InsertAuto(trg, mdl);
+                    }catch(ParcheggioEccezione exc){
+                        System.out.println(exc.getMessage());
+                    }
+                    break;
+                case('2'):
+                    Scanner scan1 = new Scanner(System.in);
+                    System.out.println("Inserire la posizione dell'automobile in uscita:");
+                    int pos = scan1.nextInt();
+                    if(pos<0 || pos>=veicoli.length){
+                        System.out.println("Valore inserito non valido.");
+                    }else{
+                        ExitAuto(pos);
+                    }
+                    break;
+                case ('3'):
+                    stampaLista();
+                    break;
+                case('E'):
+                    System.out.println("Chiusura del programma....");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Scelta non valida.");
+                    break;
+            }
+        }while(true);
+    }
+    public void InsertAuto(String targa, String modello) throws ParcheggioEccezione {
+        /* richiamiamo un'eccezione che verrà trattata in un altro metodo */
+        if(disponibili == 0) throw new ParcheggioEccezione("Spiacenti. Posti esauriti.");
+        /* indichiamo QUANDO usare l'eccezione in questione, fornendo anche il contenuto (stringa) che restituirà */
+        for(int i = 0; i<veicoli.length; i++) {
+            if(veicoli[i] == null) {
+                veicoli[i] = new Auto(targa, modello);
+                disponibili--;
+                System.out.println("Assegnato parcheggio in posizione " + i + " .");
+                break;
+            }
+        }
+    }
+    public void ExitAuto(int ind){
+        if(veicoli[ind] != null) {
+            veicoli[ind] = null;
+            disponibili++;
+            System.out.println("Posto " + ind + " ora libero.");
+        }else{
+            System.out.println("Non ci sono auto in questa posizione.");
+        }
+    }
+    public void stampaLista(){
+        int contaAuto = 0;
+        for(int i = 0; i < veicoli.length; i++){
+            if(veicoli[i] != null){
+                System.out.println("Posto " + i + " : targa --> " + veicoli[i].getTarga() + " ; modello --> " + veicoli[i].getModello() + " .");
+                contaAuto++;
+            }
+        }
+        System.out.println("Nel parcheggio ci sono " + contaAuto + " automobili.");
+    }
+}
+/*------------------------------------------------------------------------------------------*/
+public class ParcheggioEccezione extends Exception{
+    public ParcheggioEccezione(String message) {
+        super(message);
+    }
+}
